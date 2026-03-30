@@ -240,7 +240,6 @@ const AdminPanel = () => {
   const [password, setPassword] = useState('');
   const { products: globalProducts, saveProducts, toggleStock, productStock } = useCart();
   
-  // Estado local para edición antes de guardar
   const [localProducts, setLocalProducts] = useState<Product[]>([]);
   const [showAddForm, setShowAddForm] = useState(false);
   const [newProd, setNewProd] = useState({
@@ -411,10 +410,46 @@ const AdminPanel = () => {
 };
 
 const MainContent = () => {
-  const { isCartOpen, setIsCartOpen, products } = useCart();
+  const { products } = useCart(); // Removed isCartOpen and setIsCartOpen as per user instruction
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [view, setView] = useState<'home' | 'collection' | 'contact'>('home');
   const [isAdmin, setIsAdmin] = useState(false);
+
+  // Carousel logic for hero banner
+  const bannerImages = [
+    '/banner.jpg',
+    '/banner2.jpg',
+    '/banner3.jpg',
+    '/banner4.jpg',
+    '/banner5.jpg',
+    '/banner6.jpg',
+    '/banner7.jpg',
+    '/banner8.jpg',
+    '/banner9.jpg',
+  ];
+
+  const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBannerIndex(prevIndex => (prevIndex + 1) % bannerImages.length);
+    }, 5000); // Change banner every 5 seconds
+    return () => clearInterval(interval);
+  }, [bannerImages.length]);
+
+  const currentBannerSrc = bannerImages[currentBannerIndex];
+
+  const heroBannerStyles: React.CSSProperties = {
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    zIndex: '-1',
+    transition: 'opacity 1s ease-in-out', // Apply transition for fade effect
+    opacity: 1, // Ensure the current banner is visible
+  };
 
   useEffect(() => {
     if (window.location.pathname === '/admin') {
@@ -437,7 +472,12 @@ const MainContent = () => {
         {view === 'home' && (
           <>
             <section className="hero">
-              <img src="/banner.jpg" alt="Montelari Club Hero Banner" className="hero-banner-img" style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', objectFit: 'cover', zIndex: '-1' }} />
+              <img 
+                src={currentBannerSrc} 
+                alt="Montelari Club Hero Banner" 
+                className="hero-banner-img" 
+                style={heroBannerStyles}
+              />
               <div className="hero-overlay"></div>
               <div className="hero-content">
                 <h2>Elegancia en la Simplicidad</h2>
