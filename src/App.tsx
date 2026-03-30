@@ -410,7 +410,7 @@ const AdminPanel = () => {
 };
 
 const MainContent = () => {
-  const { products } = useCart(); // Removed isCartOpen and setIsCartOpen as per user instruction
+  const { setIsCartOpen, products } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [view, setView] = useState<'home' | 'collection' | 'contact'>('home');
   const [isAdmin, setIsAdmin] = useState(false);
