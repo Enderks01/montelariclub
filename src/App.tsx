@@ -482,6 +482,7 @@ const MainContent = () => {
                 alt="Montelari Club Hero Banner" 
                 className="hero-banner-img" 
                 style={heroBannerStyles}
+                {...(currentBannerIndex === 0 ? { fetchPriority: "high" } : {})}
               />
               <div className="hero-overlay"></div>
               <div className="hero-content">
