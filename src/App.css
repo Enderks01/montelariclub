@@ -858,6 +858,8 @@ button {
   .carousel-track {
     gap: 1rem;
     padding: 0 1rem;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .carousel-track .product-card {
