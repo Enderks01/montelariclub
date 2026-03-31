@@ -4,7 +4,7 @@ import { CartProvider, useCart } from './context/CartContext';
 import type { Product } from './context/CartContext';
 import './App.css';
 
-const SIZES = ['S', 'M', 'L', 'XL', '2XL'];
+const SIZES = ['S', 'M', 'L'];
 
 const Navbar = ({ onMenuOpen, setView }: { onMenuOpen: () => void; setView: (v: 'home' | 'collection' | 'contact') => void }) => {
   const { cart, setIsCartOpen, isCartOpen } = useCart();
@@ -149,6 +149,11 @@ const Sidebar = ({ isOpen, onClose, setView }: { isOpen: boolean; onClose: () =>
           <a href="#" onClick={() => navigate('collection')}>Colecciones</a>
           <a href="#sobre-nosotros" onClick={() => navigate('home')}>Sobre Nosotros</a>
           <a href="#" onClick={() => navigate('contact')}>Contacto</a>
+          <div style={{ marginTop: '1rem', borderTop: '1px solid #eee', paddingTop: '1.5rem' }}>
+            <a href="#" onClick={() => { window.location.pathname = '/admin'; onClose(); }} style={{ fontSize: '0.9rem', opacity: 0.5, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <User size={16} /> Panel Admin
+            </a>
+          </div>
         </nav>
 
         <div className="sidebar-footer">
@@ -490,8 +495,8 @@ const MainContent = () => {
             </section>
 
             <section className="collaboration">
-              <div className="collaboration-banner" onClick={() => window.open('https://www.instagram.com/scented.parfums?igsh=Z2k3MHcwOHpwYW5r', '_blank')}>
-                <img src="/colaboracion.PNG" alt="Colaboración Montelari Club" />
+              <div className="collaboration-banner" onClick={() => window.open('https://www.instagram.com/montelariclub?igsh=MTlyODF0bWdlN2U4eQ==', '_blank')}>
+                <img src="/centro.jpg" alt="Montelari Club Centro" />
               </div>
             </section>
 
@@ -509,6 +514,24 @@ const MainContent = () => {
                   </div>
                 </div>
               </div>
+            </section>
+
+            <section className="lifestyle-gallery">
+                <div className="gallery-grid">
+                  <div className="gallery-item"><img src="/home1.jpg" alt="Lifestyle 1" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home2.jpg" alt="Lifestyle 2" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home3.jpg" alt="Lifestyle 3" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home4.jpg" alt="Lifestyle 4" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home5.jpeg" alt="Lifestyle 5" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home6.jpg" alt="Lifestyle 6" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home7.jpg" alt="Lifestyle 7" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home8.jpg" alt="Lifestyle 8" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home9.jpg" alt="Lifestyle 9" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home10.jpg" alt="Lifestyle 10" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home11.jpg" alt="Lifestyle 11" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home12.jpg" alt="Lifestyle 12" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home13.jpg" alt="Lifestyle 13" loading="lazy" /></div>
+                </div>
             </section>
 
             <section id="sobre-nosotros" className="about">

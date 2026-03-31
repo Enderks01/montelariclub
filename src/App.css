@@ -197,29 +197,28 @@ button {
 
 /* Collaboration */
 .collaboration {
-  padding: 1.5rem 0;
+  padding: 0;
   background: #fff;
+  width: 100%;
 }
 
 .collaboration-banner {
   width: 100%;
   cursor: pointer;
-  max-width: 1300px;
-  margin: 0 auto;
+  line-height: 0;
 }
 
 .collaboration-banner img {
   width: 100%;
   height: auto;
-  max-height: 550px;
+  max-height: 85vh;
   object-fit: cover;
   display: block;
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  border-radius: 4px;
 }
 
 .collaboration-banner:hover img {
-  transform: scale(1.01);
+  transform: scale(1.02);
 }
 
 /* Collection Section (Home) */
@@ -671,6 +670,63 @@ button {
   align-items: center;
   justify-content: center;
   border: 2px solid #c41e3a;
+}
+
+/* Lifestyle Gallery - Seamless Mosaic */
+.lifestyle-gallery {
+  padding: 0; /* Remove padding to make it touch other sections if desired */
+  background: #fff;
+  overflow: hidden;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 25vw; /* Creates square-based tiles proportional to screen width */
+  gap: 0; /* Zero gaps for seamless look */
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0; /* Sharp edges for seamless fit */
+}
+
+/* Mixed tile sizes for a dynamic mosaic feel */
+.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; } /* Main large piece */
+.gallery-item:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+.gallery-item:nth-child(3) { grid-column: span 1; grid-row: span 2; } /* Vertical piece */
+.gallery-item:nth-child(5) { grid-column: span 2; grid-row: span 1; } /* Horizontal piece */
+.gallery-item:nth-child(8) { grid-column: span 1; grid-row: span 2; } /* Vertical piece */
+.gallery-item:nth-child(10) { grid-column: span 2; grid-row: span 1; } /* Horizontal piece */
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+  z-index: 10;
+}
+
+@media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 33.33vw;
+  }
+  .gallery-item { grid-column: span 1 !important; grid-row: span 1 !important; }
+  .gallery-item:nth-child(1) { grid-column: span 2 !important; grid-row: span 2 !important; }
+}
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 50vw;
+  }
 }
 
 /* About Section */
