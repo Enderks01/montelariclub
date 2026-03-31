@@ -530,14 +530,14 @@ const MainContent = () => {
 
             <section className="lifestyle-gallery">
                 <div className="gallery-grid">
-                  <div className="gallery-item"><img src="/home1.jpg" alt="Lifestyle 1" loading="lazy" /></div>
-                  <div className="gallery-item"><img src="/home2.jpg" alt="Lifestyle 2" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home1.jpeg" alt="Lifestyle 1" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home2.jpeg" alt="Lifestyle 2" loading="lazy" /></div>
                   <div className="gallery-item"><img src="/home3.jpg" alt="Lifestyle 3" loading="lazy" /></div>
-                  <div className="gallery-item"><img src="/home4.jpg" alt="Lifestyle 4" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home4.jpeg" alt="Lifestyle 4" loading="lazy" /></div>
                   <div className="gallery-item"><img src="/home5.jpeg" alt="Lifestyle 5" loading="lazy" /></div>
-                  <div className="gallery-item"><img src="/home6.jpg" alt="Lifestyle 6" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home6.jpeg" alt="Lifestyle 6" loading="lazy" /></div>
                   <div className="gallery-item"><img src="/home7.jpg" alt="Lifestyle 7" loading="lazy" /></div>
-                  <div className="gallery-item"><img src="/home8.jpg" alt="Lifestyle 8" loading="lazy" /></div>
+                  <div className="gallery-item"><img src="/home8.jpeg" alt="Lifestyle 8" loading="lazy" /></div>
                   <div className="gallery-item"><img src="/home9.jpg" alt="Lifestyle 9" loading="lazy" /></div>
                   <div className="gallery-item"><img src="/home10.jpg" alt="Lifestyle 10" loading="lazy" /></div>
                   <div className="gallery-item"><img src="/home11.jpg" alt="Lifestyle 11" loading="lazy" /></div>
