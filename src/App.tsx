@@ -128,7 +128,12 @@ const CartModal = ({ onClose }: { onClose: () => void }) => {
   );
 };
 
-const Sidebar = ({ isOpen, onClose, setView }: { isOpen: boolean; onClose: () => void; setView: (v: 'home' | 'collection' | 'contact') => void }) => {
+const Sidebar = ({ isOpen, onClose, setView, onAdminEnter }: { 
+  isOpen: boolean; 
+  onClose: () => void; 
+  setView: (v: 'home' | 'collection' | 'contact') => void;
+  onAdminEnter: () => void;
+}) => {
   if (!isOpen) return null;
 
   const navigate = (v: 'home' | 'collection' | 'contact') => {
@@ -150,7 +155,7 @@ const Sidebar = ({ isOpen, onClose, setView }: { isOpen: boolean; onClose: () =>
           <a href="#sobre-nosotros" onClick={() => navigate('home')}>Sobre Nosotros</a>
           <a href="#" onClick={() => navigate('contact')}>Contacto</a>
           <div style={{ marginTop: '1rem', borderTop: '1px solid #eee', paddingTop: '1.5rem' }}>
-            <a href="#" onClick={() => { window.location.pathname = '/admin'; onClose(); }} style={{ fontSize: '0.9rem', opacity: 0.5, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <a href="#" onClick={() => { onAdminEnter(); onClose(); }} style={{ fontSize: '0.9rem', opacity: 0.5, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <User size={16} /> Panel Admin
             </a>
           </div>
@@ -239,7 +244,7 @@ const ProductCard = ({ product }: { product: Product }) => {
   );
 };
 
-const AdminPanel = () => {
+const AdminPanel = ({ onExit }: { onExit: () => void }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -316,6 +321,7 @@ const AdminPanel = () => {
               <input type="password" value={password} onChange={e => setPassword(e.target.value)} required style={{ width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '4px' }} />
             </div>
             <button type="submit" className="btn-primary" style={{ width: '100%', padding: '1rem' }}>Entrar al Sistema</button>
+            <button type="button" onClick={onExit} style={{ background: 'none', border: 'none', color: '#999', fontSize: '0.8rem', cursor: 'pointer', textDecoration: 'underline' }}>Volver a la tienda</button>
           </form>
         </div>
       </div>
@@ -337,7 +343,7 @@ const AdminPanel = () => {
             <button onClick={() => setShowAddForm(!showAddForm)} className="btn-primary" style={{ background: '#27ae60', fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <PlusCircle size={16} /> Nueva Colección
             </button>
-            <button onClick={() => window.location.href = '/'} className="btn-primary" style={{ background: '#666', fontSize: '0.7rem' }}>Vista Pública</button>
+            <button onClick={onExit} className="btn-primary" style={{ background: '#666', fontSize: '0.7rem' }}>Vista Pública</button>
             <button onClick={() => setIsLoggedIn(false)} className="btn-primary" style={{ background: '#c41e3a', fontSize: '0.7rem' }}>Salir</button>
           </div>
         </header>
@@ -463,14 +469,19 @@ const MainContent = () => {
   }, []);
 
   if (isAdmin) {
-    return <AdminPanel />;
+    return <AdminPanel onExit={() => setIsAdmin(false)} />;
   }
 
   return (
     <>
       <Navbar onMenuOpen={() => setIsMenuOpen(true)} setView={setView} />
       <CartModal onClose={() => setIsCartOpen(false)} />
-      <Sidebar isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} setView={setView} />
+      <Sidebar 
+        isOpen={isMenuOpen} 
+        onClose={() => setIsMenuOpen(false)} 
+        setView={setView} 
+        onAdminEnter={() => setIsAdmin(true)}
+      />
       <FloatingCart />
 
       <main>
